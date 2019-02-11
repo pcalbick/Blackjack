@@ -1,0 +1,7 @@
+.card {
+	-fx-border-color : darkgray;
+}
+
+.hide {
+	visibility : hidden;
+}

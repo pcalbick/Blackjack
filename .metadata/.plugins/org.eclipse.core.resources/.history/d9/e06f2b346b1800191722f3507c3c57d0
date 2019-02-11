@@ -1,0 +1,96 @@
+package application.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class StartModel {
+	private Stage primaryStage;
+	private Scene gameScene;
+	private List<GridPane> cards = new ArrayList<GridPane>();
+	private List<Integer> pickedCards = new ArrayList<Integer>();
+	private IntegerProperty numb = new SimpleIntegerProperty(0);
+	
+	public StartModel(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+	
+	public Stage getStage() {
+		return primaryStage;
+	}
+	
+	public void setGameScene(Scene gameScene) {
+		this.gameScene = gameScene;
+	}
+	
+	public Scene getGameScene() {
+		return gameScene;
+	}
+	
+	public void addCard(GridPane card) {
+		cards.add(card);
+	}
+	
+	public GridPane getCard() {
+		Runnable r = new newRandom();
+		Thread t = new Thread(r);
+		t.run();
+		try {
+			t.join();
+		}
+		catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		pickedCards.add((Integer)numb.get());
+		return cards.get(numb.get());
+	}
+	
+	public void print() {
+		for(Integer i : pickedCards) {
+			System.out.print(i.intValue());
+		}
+	}
+	
+	public void clearCards() {
+		pickedCards.clear();
+	}
+	
+	public void cardCount() {
+		System.out.println(cards.size());
+	}
+	
+	class newRandom implements Runnable{
+		public void run() {
+			Random rand = new Random();
+			numb.set(rand.nextInt(51) + 0);
+			for(Integer i : pickedCards) {
+				if(numb.get() == i.intValue()) {
+					synchronized (numb) {
+						numb.set(rand.nextInt(51) + 0);
+					}
+				}
+			}
+		}
+	}
+	
+	class testRandom implements Runnable{
+		public void run() {
+			Random rand = new Random();
+			numb.set(rand.nextInt(5) + 0);
+			for(Integer i : pickedCards) {
+				if(numb.get() == i.intValue()) {
+					synchronized (numb) {
+						numb.set(rand.nextInt(5) + 0);
+					}
+				}
+			}
+		}
+	}
+}

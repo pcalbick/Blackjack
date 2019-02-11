@@ -1,0 +1,131 @@
+package application;
+	
+import java.io.IOException;
+
+import application.controller.StartController;
+import application.model.StartModel;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+
+public class Main extends Application {
+	
+	private Stage primaryStage;
+	
+	private Scene gameScene;
+	
+	private StartModel startMod;
+	private StartController startController;
+	
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			this.primaryStage = primaryStage;
+			this.primaryStage.setTitle("Black Jack");
+			initOverview();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initOverview() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/RootView.fxml"));
+			BorderPane root = (BorderPane) loader.load();
+			
+			root.setCenter(initStart());
+			gameScene = initGame();
+			
+			primaryStage.setScene(new Scene(root));
+			
+			startMod = new StartModel(primaryStage);
+			startMod.setGameScene(gameScene);
+			createCards();
+			startController.setModel(startMod);
+			
+			primaryStage.show();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Node initStart() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/StartView.fxml"));
+			VBox start = (VBox) loader.load();
+			
+			startController = loader.getController();
+			return start;
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Scene initGame() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/GameView.fxml"));
+			GridPane game = (GridPane) loader.load();
+			Scene scene = new Scene(game);
+			return scene;
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void createCards() {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/CardView.fxml"));
+		String[] letters = new String[] {"j","q","k","a"};
+		for(int i=0; i<4; i++) {
+			for(int x=0; x<10; x++) {
+				try {
+					GridPane card = (GridPane) loader.load();
+					card.getChildren().add(new Text(Integer.toString(x)));
+					card.getChildren().add(new Text(Integer.toString(x)));
+					GridPane.setConstraints(card.getChildren().get(0), 0, 0, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
+					GridPane.setConstraints(card.getChildren().get(1), 2, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+			for(int x=0; x<4; x++) {
+				try {
+					GridPane card = (GridPane) loader.load();
+					card.getChildren().add(new Text(letter[x]);
+					card.getChildren().add(new Text(Integer.toString(x)));
+					GridPane.setConstraints(card.getChildren().get(0), 0, 0, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
+					GridPane.setConstraints(card.getChildren().get(1), 2, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
