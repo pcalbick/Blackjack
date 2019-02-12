@@ -153,6 +153,7 @@ public class GameController {
 		}
 		else {
 			dealerNumb.setText(Integer.toString(house));
+			dealerNumb.getStyleClass().add("bust");
 		}
 
 		reset();
