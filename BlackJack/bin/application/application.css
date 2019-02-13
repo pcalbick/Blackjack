@@ -16,3 +16,7 @@
 .bust{
 	-fx-fill: red;
 }
+
+.bold{
+	-fx-font-weight: 700;
+}

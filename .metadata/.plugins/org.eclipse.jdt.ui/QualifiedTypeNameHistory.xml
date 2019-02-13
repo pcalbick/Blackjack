@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
@@ -9,14 +8,10 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
-<fullyQualifiedTypeName name="javafx.geometry.HPos"/>
-<fullyQualifiedTypeName name="javafx.geometry.VPos"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.Priority"/>
 <fullyQualifiedTypeName name="javafx.geometry.Insets"/>
 <fullyQualifiedTypeName name="application.model.StartModel"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.Border"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.BorderStroke"/>
-<fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
 <fullyQualifiedTypeName name="application.controller.GameController"/>
 <fullyQualifiedTypeName name="application.Main"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
@@ -32,4 +27,16 @@
 <fullyQualifiedTypeName name="javafx.beans.property.BooleanProperty"/>
 <fullyQualifiedTypeName name="javafx.beans.property.SimpleBooleanProperty"/>
 <fullyQualifiedTypeName name="javafx.scene.Node"/>
+<fullyQualifiedTypeName name="javafx.scene.canvas.Canvas"/>
+<fullyQualifiedTypeName name="javafx.scene.canvas.GraphicsContext"/>
+<fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
+<fullyQualifiedTypeName name="javafx.scene.shape.ArcType"/>
+<fullyQualifiedTypeName name="javafx.geometry.HPos"/>
+<fullyQualifiedTypeName name="javafx.geometry.VPos"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.Priority"/>
+<fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
+<fullyQualifiedTypeName name="javafx.stage.Modality"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.BorderPane"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
 </qualifiedTypeNameHistroy>
