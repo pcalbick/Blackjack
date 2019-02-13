@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RootController">
+   <children>
+      <MenuBar maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+        <menus>
+          <Menu mnemonicParsing="false" text="Game">
+            <items>
+              <CheckMenuItem fx:id="blackjack" isSelected="true" mnemonicParsing="false" text="Blackjack" onAction="#handleBlackjack"/>
+                  <CheckMenuItem fx:id="poker" isSelected="false" mnemonicParsing="false" text="Poker" onAction="#handlePoker/>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</Pane>

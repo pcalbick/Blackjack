@@ -3,21 +3,22 @@ package application;
 import java.io.IOException;
 
 import application.controller.GameController;
+import application.controller.PokerController;
+import application.controller.RootController;
 import application.model.StartModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -28,6 +29,10 @@ public class Main extends Application {
 	
 	private StartModel startMod;
 	private GameController gameController;
+	private PokerController pokerController;
+	private RootController rootController;
+	private VBox pokerStage;
+	private VBox blackjackStage;
 	
 	private int money = 2000;
 	
@@ -43,29 +48,64 @@ public class Main extends Application {
 	}
 	
 	public void initOverview() {
-			primaryStage.setScene(initGame());
-			startMod = new StartModel();
-			createCards();
-			startMod.setMoney(money);
-			gameController.setModel(startMod);
-			
-			primaryStage.show();
+		Scene game = new Scene(initGames());
+		game.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(game);
+		startMod = new StartModel();
+		createCards();
+		startMod.setMoney(money);
+		gameController.setModel(startMod);
+		pokerController.setModel(startMod);
+		rootController.setup(primaryStage,blackjackStage,pokerStage);
+		
+		primaryStage.show();
 	}
 	
-	public Scene initGame() {
+	public VBox initGames() {
+		VBox root = new VBox();
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/GameView.fxml"));
-			GridPane game = (GridPane) loader.load();
-			gameController = loader.getController();
-			Scene scene = new Scene(game);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			return scene;
+			FXMLLoader rootLoader = new FXMLLoader();
+			rootLoader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
+			root = (VBox) rootLoader.load();
+			rootController = rootLoader.getController();
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-			return null;
 		}
+		blackjackStage = getBlackjack();
+		pokerStage = getPoker();
+		root.getChildren().add(blackjackStage);
+		
+		return root;
+	}
+	
+	private VBox getBlackjack() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/GameView.fxml"));
+			VBox game = (VBox) loader.load();
+			gameController = loader.getController();
+			return game;
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private VBox getPoker() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/PokerView.fxml"));
+			VBox poker = (VBox) loader.load();
+			pokerController = loader.getController();
+			return poker;
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public void createCards() {
@@ -106,7 +146,7 @@ public class Main extends Application {
 					for(int y=0; y<2; y++) {
 						Text text = new Text(letters[x].toUpperCase());
 						text.getStyleClass().add("bold");
-						if(i == 0 || i == 3)
+						if(i == 0 || i == 2)
 							text.getStyleClass().add("bust");
 						card.getChildren().add(text);
 					}
@@ -122,28 +162,6 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 			}
-		}
-	}
-	
-	public void showSuits(Canvas c) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/Test.fxml"));
-			BorderPane pane = (BorderPane)loader.load();
-			
-			Stage test = new Stage();
-			test.setTitle("iMonitor - Options");
-			test.initModality(Modality.WINDOW_MODAL);
-			test.initOwner(primaryStage);
-			test.setResizable(true);
-			pane.setCenter(c);
-			Scene testScene = new Scene(pane);
-			test.setScene(testScene);
-			
-			test.show();
-		}
-		catch (IOException e){
-			e.printStackTrace();
 		}
 	}
 	

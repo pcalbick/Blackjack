@@ -1,0 +1,12 @@
+package application.controller;
+
+import application.model.StartModel;
+
+public class PokerController {
+	
+	private StartModel startMod;
+	
+	public void setModel(StartModel startMod) {
+		this.startMod = startMod;
+	}
+}

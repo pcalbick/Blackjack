@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
+
 <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
@@ -22,8 +23,8 @@
       <RowConstraints minHeight="-Infinity" prefHeight="150.0" valignment="CENTER" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <HBox fx:id="dealerHand" alignment="CENTER" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-      <HBox fx:id="playerHand" alignment="CENTER" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+      <HBox fx:id="dealerHand" alignment="CENTER" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+      <HBox fx:id="playerHand" alignment="CENTER" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
       <VBox alignment="CENTER" spacing="10.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
             <Button fx:id="deal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDeal" prefWidth="55.0" text="Deal" />
@@ -32,7 +33,7 @@
             <Button fx:id="quit" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleQuit" prefWidth="55.0" text="Quit" />
          </children>
       </VBox>
-      <VBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <VBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
             <Text fx:id="dealerNumb" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
             <Text fx:id="playerNumb" strokeType="OUTSIDE" strokeWidth="0.0" text="Player" textAlignment="CENTER" VBox.vgrow="ALWAYS" />

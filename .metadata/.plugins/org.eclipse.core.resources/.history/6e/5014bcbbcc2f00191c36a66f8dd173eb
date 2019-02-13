@@ -1,0 +1,41 @@
+package application.controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckMenuItem;
+import javafx.stage.Stage;
+
+public class RootController {
+	@FXML
+	public CheckMenuItem blackjack;
+	@FXML
+	public CheckMenuItem poker;
+	
+	private Stage primaryStage;
+	private Scene blackjackStage;
+	private Scene pokerStage;
+	
+	public void setup(Stage primaryStage, Scene blackjackStage, Scene pokerStage) {		
+		this.primaryStage = primaryStage;
+		this.blackjackStage = blackjackStage;
+		this.pokerStage = pokerStage;
+	}
+	
+	@FXML
+	public void handelBlackjack() {
+		primaryStage.setScene(blackjackStage);
+		blackjack.setDisable(false);
+		blackjack.setSelected(false);
+		poker.setSelected(false);
+		poker.setDisable(true);
+	}
+	
+	@FXML
+	public void handelPoker() {
+		primaryStage.setScene(pokerStage);
+		blackjack.setDisable(false);
+		blackjack.setSelected(false);
+		poker.setSelected(false);
+		poker.setDisable(true);
+	}
+}
