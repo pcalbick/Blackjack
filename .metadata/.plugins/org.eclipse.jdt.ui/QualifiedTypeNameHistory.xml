@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.GridPane"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="javafx.geometry.Insets"/>
@@ -14,7 +13,6 @@
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
 <fullyQualifiedTypeName name="javafx.beans.property.IntegerProperty"/>
-<fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.StackPane"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
@@ -22,7 +20,6 @@
 <fullyQualifiedTypeName name="javafx.scene.control.RadioMenuItem"/>
 <fullyQualifiedTypeName name="javafx.beans.property.BooleanProperty"/>
 <fullyQualifiedTypeName name="javafx.beans.property.SimpleBooleanProperty"/>
-<fullyQualifiedTypeName name="javafx.scene.Node"/>
 <fullyQualifiedTypeName name="javafx.scene.canvas.Canvas"/>
 <fullyQualifiedTypeName name="javafx.scene.canvas.GraphicsContext"/>
 <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
@@ -39,16 +36,25 @@
 <fullyQualifiedTypeName name="javafx.stage.Stage"/>
 <fullyQualifiedTypeName name="javafx.scene.Scene"/>
 <fullyQualifiedTypeName name="application.controller.PokerController"/>
-<fullyQualifiedTypeName name="application.model.StartModel"/>
 <fullyQualifiedTypeName name="javafx.scene.control.CheckMenuItem"/>
 <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
 <fullyQualifiedTypeName name="javafx.scene.control.ChoiceBox"/>
-<fullyQualifiedTypeName name="javafx.scene.control.Button"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.VBox"/>
 <fullyQualifiedTypeName name="application.controller.RootController"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.GridPane"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.VBox"/>
+<fullyQualifiedTypeName name="javafx.scene.Node"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+<fullyQualifiedTypeName name="javafx.scene.layout.Region"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Label"/>
+<fullyQualifiedTypeName name="javafx.scene.control.MenuBar"/>
+<fullyQualifiedTypeName name="application.model.StartModel"/>
+<fullyQualifiedTypeName name="application.controller.GamePanelController"/>
+<fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
+<fullyQualifiedTypeName name="javafx.beans.property.StringProperty"/>
+<fullyQualifiedTypeName name="application.controller.PanelController"/>
 </qualifiedTypeNameHistroy>

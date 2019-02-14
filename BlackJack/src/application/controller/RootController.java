@@ -1,9 +1,11 @@
 package application.controller;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class RootController {
 	@FXML
@@ -11,21 +13,23 @@ public class RootController {
 	@FXML
 	public CheckMenuItem poker;
 	
-	private Stage primaryStage;
-	private VBox blackjackStage;
-	private VBox pokerStage;
+	private VBox primaryStage;
+	private GridPane blackjackStage;
+	private GridPane pokerStage;
+	private StringProperty activeGame = new SimpleStringProperty("blackjack");
 	
-	public void setup(Stage primaryStage, VBox blackjackStage, VBox pokerStage) {		
+	public void setup(VBox primaryStage, GridPane blackjackStage, GridPane pokerStage) {		
 		this.primaryStage = primaryStage;
 		this.blackjackStage = blackjackStage;
 		this.pokerStage = pokerStage;
+		setActiveGame("blackjack");
 	}
 	
 	@FXML
 	public void handelBlackjack() {
-		VBox newScene = (VBox)primaryStage.getScene().getRoot();
-		newScene.getChildren().remove(1);
-		newScene.getChildren().add(blackjackStage);
+		setActiveGame("blackjack");
+		primaryStage.getChildren().remove(primaryStage.getChildren().size()-1);
+		primaryStage.getChildren().add(blackjackStage);
 		blackjack.setDisable(true);
 		blackjack.setSelected(true);
 		poker.setSelected(false);
@@ -34,12 +38,20 @@ public class RootController {
 	
 	@FXML
 	public void handelPoker() {
-		VBox newScene = (VBox)primaryStage.getScene().getRoot();
-		newScene.getChildren().remove(1);
-		newScene.getChildren().add(pokerStage);
+		setActiveGame("poker");
+		primaryStage.getChildren().remove(primaryStage.getChildren().size()-1);
+		primaryStage.getChildren().add(pokerStage);
 		blackjack.setDisable(false);
 		blackjack.setSelected(false);
 		poker.setSelected(true);
 		poker.setDisable(true);
+	}
+	
+	public String getActiveGame() {
+		return activeGame.get();
+	}
+	
+	private void setActiveGame(String game) {
+		activeGame.set(game);
 	}
 }

@@ -9,13 +9,14 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="Games">
+          <Menu mnemonicParsing="false" styleClass="menuItem" text="Games">
             <items>
-                  <CheckMenuItem fx:id="blackjack" mnemonicParsing="false" onAction="#handelBlackjack" selected="true" text="Blackjack" />
-                  <CheckMenuItem fx:id="poker" mnemonicParsing="false" onAction="#handelPoker" text="Poker" />
+                  <CheckMenuItem fx:id="blackjack" mnemonicParsing="false" onAction="#handelBlackjack" selected="true" styleClass="menuItem" text="Blackjack" />
+                  <CheckMenuItem fx:id="poker" mnemonicParsing="false" onAction="#handelPoker" styleClass="menuItem" text="Poker" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <Region prefHeight="5.0" />
    </children>
 </VBox>

@@ -9,6 +9,11 @@
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
 			<item value="rootController"/>
+			<item value="gamepanel"/>
+			<item value="gamepanelcontrol"/>
+			<item value="setmodel"/>
+			<item value="@FXML"/>
+			<item value="gamePanel"/>
 			<item value="gameController"/>
 			<item value="startMod"/>
 			<item value="money"/>
@@ -16,6 +21,7 @@
 			<item value="getace"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
