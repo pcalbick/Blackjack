@@ -72,11 +72,8 @@ public class PanelController {
 	public void handleHit() {
 		if(root.getActiveGame().equals("blackjack")) {
 			blackjackController.handleHit();
-			if(blackjackController.getNumber() >= 21) {
+			if(blackjackController.getNumber() >= 21)
 				betButton.setDisable(false);
-				hit.setDisable(true);
-				hold.setDisable(true);
-			}
 			bettingMoney.setText("0");
 		}
 	}

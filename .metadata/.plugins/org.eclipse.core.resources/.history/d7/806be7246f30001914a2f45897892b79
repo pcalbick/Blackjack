@@ -75,7 +75,7 @@ public class PanelController {
 			if(blackjackController.getNumber() >= 21) {
 				betButton.setDisable(false);
 				hit.setDisable(true);
-				hold.setDisable(true);
+				hit.setDisable(true);
 			}
 			bettingMoney.setText("0");
 		}
