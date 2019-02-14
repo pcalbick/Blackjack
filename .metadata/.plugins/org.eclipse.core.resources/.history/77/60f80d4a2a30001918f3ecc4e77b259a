@@ -1,0 +1,89 @@
+package application.controller;
+
+import application.model.StartModel;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+
+public class GamePanelController {
+	@FXML
+	Button deal;
+	
+	@FXML
+	Button hit;
+	
+	@FXML
+	Button hold;
+	
+	@FXML
+	Button quit;
+	
+	@FXML
+	Button add;
+	
+	@FXML
+	Button remove;
+	
+	@FXML
+	Text money;
+	
+	@FXML
+	Text bettingMoney;
+	
+	@FXML
+	TextField placeBet;
+	
+	@FXML
+	Button betButton;
+	
+	private PokerController pokerController;
+	private GameController blackjackController;
+	private StartModel startMod;
+	
+	@FXML
+	public void handleDeal() {
+		
+	}
+	
+	@FXML
+	public void handleHit() {
+		
+	}
+	
+	@FXML 
+	public void handleHold() {
+		//link to handelhold in gamecontrollers
+	}
+	
+	@FXML
+	public void handleQuit() {
+		System.exit(0);
+	}
+	
+	@FXML
+	public void handleBet() {
+		if(placeBet.getText().matches("\\d+") && Integer.parseInt(placeBet.getText()) <= startMod.getMoney()) {
+			deal.setDisable(false);
+			bettingMoney.setText(placeBet.getText());
+			startMod.changeMoney(-Integer.parseInt(placeBet.getText()));
+			money.setText(Integer.toString(startMod.getMoney()));
+			placeBet.getStyleClass().removeAll("warning");
+			betButton.setDisable(true);
+			bettingOn.set(true);
+			placeBet.setText("");
+		}
+		else {
+			placeBet.setText("");
+			placeBet.getStyleClass().add("warning");
+		}
+	}
+	
+	public void setup(StartModel startMod, GameController blackjackController, PokerController pokerController) {
+		this.startMod = startMod;
+		this.blackjackController = blackjackController;
+		this.pokerController = pokerController;
+	}
+}

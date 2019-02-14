@@ -13,10 +13,23 @@ import javafx.scene.text.Text;
 
 //Currently Blackjack - Must convert to poker
 public class PokerController {
+	@FXML
+	public Text dealerNumb;
+	@FXML
+	public Text playerNumb;
+	@FXML
+	public Text comp1;
+	@FXML
+	public Text comp2;
+	
 	private StartModel startMod;
 	
 	public void setModel(StartModel startMod) {
 		this.startMod = startMod;
+		dealerNumb.getStyleClass().add("bold");
+		playerNumb.getStyleClass().add("bold");
+		comp1.getStyleClass().add("bold");
+		comp2.getStyleClass().add("bold");
 	}
 }
 

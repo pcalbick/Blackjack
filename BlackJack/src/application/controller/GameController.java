@@ -1,12 +1,7 @@
 package application.controller;
 
 import application.model.StartModel;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -18,19 +13,6 @@ public class GameController {
 	private GridPane hideCard;
 	private int number;
 	private int house;
-	private BooleanProperty bettingOn = new SimpleBooleanProperty(false);
-	
-	@FXML
-	Button deal;
-	
-	@FXML
-	Button hit;
-	
-	@FXML
-	Button hold;
-	
-	@FXML
-	Button quit;
 	
 	@FXML
 	HBox dealerHand;
@@ -43,21 +25,6 @@ public class GameController {
 	
 	@FXML
 	Text playerNumb;
-	
-	@FXML
-	Text money;
-	
-	@FXML
-	Text bettingMoney;
-	
-	@FXML
-	TextField placeBet;
-	
-	@FXML
-	Button betButton;
-	
-	@FXML
-	RadioMenuItem toggleBetting;
 	
 	@FXML
 	public void handleDeal() {
@@ -76,9 +43,6 @@ public class GameController {
 		playerNumb.setText("Player");
 		dealerNumb.getStyleClass().remove("bust");
 		playerNumb.getStyleClass().remove("bust");
-		betButton.setDisable(true);
-		
-		money.setText(Integer.toString(startMod.getMoney()));
 		
 		hideCard = null;
 		for(int i=0; i<players*2; i++) {
@@ -111,9 +75,6 @@ public class GameController {
 			numb += getNumber(card);
 			playerNumb.setText(Integer.toString(numb));
 		}
-		
-		hit.setDisable(false);
-		hold.setDisable(false);
 		
 		if(number == 21) {
 			reset();
@@ -170,49 +131,7 @@ public class GameController {
 		System.exit(0);
 	}
 	
-	@FXML
-	public void handleBet() {
-		if(placeBet.getText().matches("\\d+") && Integer.parseInt(placeBet.getText()) <= startMod.getMoney()) {
-			deal.setDisable(false);
-			bettingMoney.setText(placeBet.getText());
-			startMod.changeMoney(-Integer.parseInt(placeBet.getText()));
-			money.setText(Integer.toString(startMod.getMoney()));
-			placeBet.getStyleClass().removeAll("warning");
-			betButton.setDisable(true);
-			bettingOn.set(true);
-			placeBet.setText("");
-		}
-		else {
-			placeBet.setText("");
-			placeBet.getStyleClass().add("warning");
-		}
-	}
-	
 	public void reset() {
-		if(bettingOn.get()) {
-			if((house > 21 || (house < number && house < 21)) && number < 21) {
-				startMod.changeMoney(Integer.parseInt(bettingMoney.getText())*2);
-				money.setText(Integer.toString(startMod.getMoney()));
-			}
-			if(house == number) {
-				startMod.changeMoney((int)(Integer.parseInt(bettingMoney.getText())));
-				money.setText(Integer.toString(startMod.getMoney()));
-			}
-			if(number == 21) {
-				startMod.changeMoney((int)(Integer.parseInt(bettingMoney.getText())*2.5));
-				money.setText(Integer.toString(startMod.getMoney()));
-			}
-			else {
-				money.setText(Integer.toString(startMod.getMoney()));
-			}
-			bettingMoney.setText("0");
-			bettingOn.set(false);
-		}
-		
-		betButton.setDisable(false);
-		hit.setDisable(true);
-		hold.setDisable(true);
-		
 		if(hideCard != null) {
 			hideCard.getChildren().get(0).getStyleClass().remove("hide");
 			hideCard.getChildren().get(1).getStyleClass().remove("hide");
@@ -245,7 +164,13 @@ public class GameController {
 		return numb;
 	}
 	
+	public int getNumber() {
+		return number;
+	}
+	
 	public void setModel(StartModel startMod) {
 		this.startMod = startMod;
+		dealerNumb.getStyleClass().add("bold");
+		playerNumb.getStyleClass().add("bold");
 	}
 }

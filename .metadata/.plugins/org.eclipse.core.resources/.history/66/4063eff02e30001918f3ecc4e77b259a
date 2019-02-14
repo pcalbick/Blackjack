@@ -1,0 +1,113 @@
+package application.controller;
+
+import application.model.StartModel;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+
+public class GamePanelController {
+	@FXML
+	Button deal;
+	
+	@FXML
+	Button hit;
+	
+	@FXML
+	Button hold;
+	
+	@FXML
+	Button quit;
+	
+	@FXML
+	Button add;
+	
+	@FXML
+	Button remove;
+	
+	@FXML
+	Text money;
+	
+	@FXML
+	Text bettingMoney;
+	
+	@FXML
+	TextField placeBet;
+	
+	@FXML
+	Button betButton;
+	
+	private PokerController pokerController;
+	private GameController blackjackController;
+	private RootController rootController;
+	private StartModel startMod;
+	
+	@FXML
+	public void handleDeal() {
+		switch(rootController.getActiveGame()) {
+			case "blackjack":
+				blackjackController.handleDeal();
+				break;
+			case "poker":
+				//pokerController.handleDeal();
+				break;
+		}
+	}
+	
+	@FXML
+	public void handleHit() {
+		switch(rootController.getActiveGame()) {
+			case "blackjack":
+				blackjackController.handleHit();
+				break;
+			case "poker":
+				//pokerController.handleDeal();
+				break;
+		}
+	}
+	
+	@FXML 
+	public void handleHold() {
+		switch(rootController.getActiveGame()) {
+			case "blackjack":
+				blackjackController.handleHold();
+				break;
+			case "poker":
+				//pokerController.handleDeal();
+				break;
+		}
+	}
+	
+	@FXML
+	public void handleQuit() {
+		switch(rootController.getActiveGame()) {
+			case "blackjack":
+				blackjackController.handleQuit();
+				break;
+			case "poker":
+				pokerController.handleQuit();
+				break;
+		}
+	}
+	
+	@FXML
+	public void handleBet() {
+		switch(rootController.getActiveGame()) {
+			case "blackjack":
+				blackjackController.handleBet();
+				break;
+			case "poker":
+				//pokerController.handleDeal();
+				break;
+		}
+	}
+	
+	public void setup(StartModel startMod, GameController blackjackController, PokerController pokerController, RootController rootController) {
+		this.startMod = startMod;
+		this.blackjackController = blackjackController;
+		this.pokerController = pokerController;
+		this.rootController = rootController;
+	}
+}

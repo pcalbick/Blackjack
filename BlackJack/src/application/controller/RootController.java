@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class RootController {
@@ -13,23 +14,29 @@ public class RootController {
 	@FXML
 	public CheckMenuItem poker;
 	
-	private VBox primaryStage;
+	private HBox panelStage;
+	private PanelController panelController;
 	private GridPane blackjackStage;
 	private GridPane pokerStage;
 	private StringProperty activeGame = new SimpleStringProperty("blackjack");
 	
-	public void setup(VBox primaryStage, GridPane blackjackStage, GridPane pokerStage) {		
-		this.primaryStage = primaryStage;
+	public void setup(HBox panelStage, GridPane blackjackStage, GridPane pokerStage, PanelController panelController) {		
+		this.panelStage = panelStage;
 		this.blackjackStage = blackjackStage;
 		this.pokerStage = pokerStage;
+		this.panelController = panelController;
 		setActiveGame("blackjack");
+		
+		activeGame.addListener((ods, ov, nv) -> {
+			panelController.setGame(nv);
+		});
 	}
 	
 	@FXML
 	public void handelBlackjack() {
 		setActiveGame("blackjack");
-		primaryStage.getChildren().remove(primaryStage.getChildren().size()-1);
-		primaryStage.getChildren().add(blackjackStage);
+		panelStage.getChildren().remove(panelStage.getChildren().size()-1);
+		panelStage.getChildren().add(blackjackStage);
 		blackjack.setDisable(true);
 		blackjack.setSelected(true);
 		poker.setSelected(false);
@@ -39,8 +46,8 @@ public class RootController {
 	@FXML
 	public void handelPoker() {
 		setActiveGame("poker");
-		primaryStage.getChildren().remove(primaryStage.getChildren().size()-1);
-		primaryStage.getChildren().add(pokerStage);
+		panelStage.getChildren().remove(panelStage.getChildren().size()-1);
+		panelStage.getChildren().add(pokerStage);
 		blackjack.setDisable(false);
 		blackjack.setSelected(false);
 		poker.setSelected(true);

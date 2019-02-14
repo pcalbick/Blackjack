@@ -1,0 +1,78 @@
+package application.controller;
+
+import application.model.StartModel;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+
+public class GamePanelController {
+	
+	Button deal;
+	
+	
+	Button hit;
+	
+	
+	Button hold;
+	
+	
+	Button quit;
+	
+	
+	Button add;
+	
+	
+	Button remove;
+	
+	
+	Text money;
+	
+	
+	Text bettingMoney;
+	
+	
+	TextField placeBet;
+	
+	
+	Button betButton;
+	
+	private PokerController pokerController;
+	private GameController blackjackController;
+	private RootController rootController;
+	private StartModel startMod;
+	
+	
+	public void handleDeal() {
+		
+	}
+	
+	
+	public void handleHit() {
+		
+	}
+	
+	 
+	public void handleHold() {
+		
+	}
+	
+	
+	public void handleQuit() {
+		
+	}
+	
+	
+	public void handleBet() {
+		
+	}
+	
+	public void setup(StartModel startMod, GameController blackjackController, PokerController pokerController, RootController rootController) {
+		this.startMod = startMod;
+		this.blackjackController = blackjackController;
+		this.pokerController = pokerController;
+		this.rootController = rootController;
+	}
+}

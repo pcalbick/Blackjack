@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,7 @@ import javafx.scene.text.Text;
 
 public class Main extends Application {
 	
+	private boolean styled = false;
 	private Stage primaryStage;
 	
 	private StartModel startMod;
@@ -39,6 +41,7 @@ public class Main extends Application {
 	private PanelController panelController;
 	private GridPane pokerStage;
 	private GridPane blackjackStage;
+	private HBox gamePanel;
 	private VBox root;
 	
 	private int money = 2000;
@@ -56,7 +59,10 @@ public class Main extends Application {
 	
 	public void initOverview() {
 		Scene game = new Scene(initGames());
-		game.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		if(styled)
+			game.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		if(!styled)
+			game.getStylesheets().add(getClass().getResource("minimal.css").toExternalForm());
 		
 		primaryStage.setScene(game);
 		startMod = new StartModel();
@@ -64,8 +70,8 @@ public class Main extends Application {
 		startMod.setMoney(money);
 		gameController.setModel(startMod);
 		pokerController.setModel(startMod);
-		rootController.setup(root,blackjackStage,pokerStage);
-		panelController.setRoot(rootController,gameController,pokerController);
+		rootController.setup(gamePanel,blackjackStage,pokerStage, panelController);
+		panelController.setRoot(startMod,rootController,gameController,pokerController);
 		
 		primaryStage.show();
 	}
@@ -85,8 +91,36 @@ public class Main extends Application {
 		}
 		blackjackStage = getBlackjack();
 		pokerStage = getPoker();
-		root.getChildren().add(blackjackStage);
+		gamePanel = addGamePanel();
+		gamePanel.getChildren().add(blackjackStage);
+		root.getChildren().add(gamePanel);
 		return root;
+	}
+	
+	
+	private HBox addGamePanel() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/GamePanel.fxml"));
+			GridPane gamePanel = (GridPane) loader.load();
+			panelController = loader.getController();
+			for(Node n : gamePanel.getChildren()) {
+				if(n instanceof Button)
+					n.getStyleClass().add("button");
+				if(n instanceof Separator)
+					n.getStyleClass().add("separator");
+				if(n instanceof Text || n instanceof Label)
+					n.getStyleClass().add("text");
+			}
+			HBox panel = new HBox();
+			panel.getChildren().add(gamePanel);
+			panel.getStyleClass().add("gamePanel");
+			return panel;
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	private GridPane getBlackjack() {
@@ -94,8 +128,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/GameView.fxml"));
 			GridPane game = (GridPane) loader.load();
-			game.getChildren().add(addGamePanel());
-			GridPane.setConstraints(game.getChildren().get(game.getChildren().size()-1), 0, 0, 1, 3, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.ALWAYS, null);
+			game.getStyleClass().add("game");
 			gameController = loader.getController();
 			return game;
 		}
@@ -110,34 +143,11 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/PokerView.fxml"));
 			GridPane poker = (GridPane) loader.load();
-			poker.getChildren().add(addGamePanel());
-			GridPane.setConstraints(poker.getChildren().get(poker.getChildren().size()-1), 0, 0, 1, 3, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.ALWAYS, null);
+			poker.getStyleClass().add("game");
 			pokerController = loader.getController();
 			return poker;
 		}
 		catch(IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	private GridPane addGamePanel() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/GamePanel.fxml"));
-			HBox panel = (HBox) loader.load();
-			for(Node n : panel.getChildren()) {
-				if(n instanceof Button)
-					n.getStyleClass().add("button");
-				if(n instanceof Separator)
-					n.getStyleClass().add("separator");
-				if(n instanceof Text || n instanceof Label)
-					n.getStyleClass().add("text");
-			}
-			panel.getStyleClass().add("gamePanel");
-			return panel;
-		}
-		catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -164,7 +174,6 @@ public class Main extends Application {
 					GridPane.setConstraints(card.getChildren().get(0), 0, 0, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
 					GridPane.setConstraints(card.getChildren().get(1), 2, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
 					GridPane.setConstraints(card.getChildren().get(2), 1, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(5));
-					card.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 					card.getStyleClass().add("card");
 					startMod.addCard(card);
 				}
@@ -189,7 +198,6 @@ public class Main extends Application {
 					GridPane.setConstraints(card.getChildren().get(0), 0, 0, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
 					GridPane.setConstraints(card.getChildren().get(1), 2, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(2));
 					GridPane.setConstraints(card.getChildren().get(2), 1, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.NEVER, Priority.NEVER, new Insets(5));
-					card.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 					card.getStyleClass().add("card");
 					startMod.addCard(card);
 				}
