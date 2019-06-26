@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckMenuItem?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RootController">
    <children>
@@ -11,8 +12,9 @@
         <menus>
           <Menu mnemonicParsing="false" styleClass="menuItem" text="Games">
             <items>
-                  <CheckMenuItem fx:id="blackjack" mnemonicParsing="false" onAction="#handelBlackjack" selected="true" styleClass="menuItem" text="Blackjack" />
-                  <CheckMenuItem fx:id="poker" mnemonicParsing="false" onAction="#handelPoker" styleClass="menuItem" text="Poker" />
+                  <CheckMenuItem fx:id="blackjack" disable="true" mnemonicParsing="false" onAction="#handelBlackjack" selected="true" styleClass="menuItem" text="Blackjack" />
+                  <CheckMenuItem fx:id="solitair" mnemonicParsing="false" onAction="#handelSolitair" styleClass="menuItem" text="Solitair" />
+                  <!-- <CheckMenuItem fx:id="poker" mnemonicParsing="false" onAction="#handelPoker" styleClass="menuItem" text="Poker" /> -->
             </items>
           </Menu>
         </menus>

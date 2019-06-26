@@ -15,8 +15,6 @@ public class PanelController {
 	private RootController root;
 	private GameController blackjackController;
 	private PokerController pokerController;
-	private int number;
-	private int house;
 	private BooleanProperty bettingOn = new SimpleBooleanProperty(true);
 	
 	@FXML
@@ -76,8 +74,8 @@ public class PanelController {
 				betButton.setDisable(false);
 				hit.setDisable(true);
 				hold.setDisable(true);
+				reset(blackjackController.getHouse(),blackjackController.getNumber());
 			}
-			bettingMoney.setText("0");
 		}
 	}
 	
@@ -86,8 +84,10 @@ public class PanelController {
 		if(root.getActiveGame().equals("blackjack")) {
 			blackjackController.handleHold();
 			betButton.setDisable(false);
+			hit.setDisable(true);
+			hold.setDisable(true);
+			reset(blackjackController.getHouse(),blackjackController.getNumber());
 		}
-		bettingMoney.setText("0");
 	}
 	
 	@FXML
@@ -113,7 +113,7 @@ public class PanelController {
 		}
 	}
 	
-	public void reset() {
+	public void reset(int house, int number) {
 		if(bettingOn.get()) {
 			if((house > 21 || (house < number && house < 21)) && number < 21) {
 				startMod.changeMoney(Integer.parseInt(bettingMoney.getText())*2);

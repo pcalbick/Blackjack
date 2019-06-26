@@ -84,7 +84,8 @@ public class GameController {
 	@FXML
 	public void handleHit() {
 		GridPane newCard = startMod.getCard();
-		playerHand.getChildren().add(newCard);
+		if(!playerHand.getChildren().contains(newCard))
+			playerHand.getChildren().add(newCard);
 		number = Integer.parseInt(playerNumb.getText()) + getNumber(newCard);
 		if(number > 21) {
 			playerNumb.setText("Bust");
@@ -166,6 +167,10 @@ public class GameController {
 	
 	public int getNumber() {
 		return number;
+	}
+	
+	public int getHouse() {
+		return house;
 	}
 	
 	public void setModel(StartModel startMod) {

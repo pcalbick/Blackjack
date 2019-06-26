@@ -31,5 +31,14 @@ public class PokerController {
 		comp1.getStyleClass().add("bold");
 		comp2.getStyleClass().add("bold");
 	}
+	
+	public void handleAdd() {
+		if(comp1 == null) {
+			comp1.setText("Player 1");
+		}
+		else {
+			comp2.setText("Player 2");
+		}
+	}
 }
 

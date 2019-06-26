@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="getStylesheets" key="selection"/>
+		<item value="dealer" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="dealer"/>
+			<item value="controller"/>
+			<item value="poker"/>
+			<item value="start"/>
+			<item value="house"/>
+			<item value="reset"/>
+			<item value="blackjackController"/>
 			<item value="getStylesheets"/>
 			<item value="money"/>
+			<item value="createcards"/>
+			<item value="minimal"/>
 			<item value="betButton"/>
 			<item value="bettingOn"/>
 			<item value="panelController"/>
 			<item value="rootController"/>
-			<item value="gamepanel"/>
-			<item value="gamepanelcontrol"/>
-			<item value="setmodel"/>
-			<item value="@FXML"/>
-			<item value="gamePanel"/>
-			<item value="gameController"/>
-			<item value="startMod"/>
-			<item value="placeBet"/>
-			<item value="getace"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

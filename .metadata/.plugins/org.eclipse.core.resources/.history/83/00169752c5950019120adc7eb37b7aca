@@ -1,0 +1,12 @@
+package application.controller;
+
+import application.model.StartModel;
+
+public class SolitairController {
+	
+	public void init(StartModel startMod) {
+		for(int i=0; i<35; i++) {
+			
+		}
+	}
+}

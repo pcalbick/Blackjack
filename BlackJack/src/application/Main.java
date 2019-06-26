@@ -5,6 +5,7 @@ import java.io.IOException;
 import application.controller.GameController;
 import application.controller.PanelController;
 import application.controller.PokerController;
+import application.controller.SolitairController;
 import application.controller.RootController;
 import application.model.StartModel;
 import javafx.application.Application;
@@ -37,10 +38,12 @@ public class Main extends Application {
 	private StartModel startMod;
 	private GameController gameController;
 	private PokerController pokerController;
+	private SolitairController solitairController;
 	private RootController rootController;
 	private PanelController panelController;
 	private GridPane pokerStage;
 	private GridPane blackjackStage;
+	private GridPane solitairStage;
 	private HBox gamePanel;
 	private VBox root;
 	
@@ -59,6 +62,8 @@ public class Main extends Application {
 	
 	public void initOverview() {
 		Scene game = new Scene(initGames());
+		
+		//Toggle Between CSS Styles
 		if(styled)
 			game.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		if(!styled)
@@ -68,10 +73,11 @@ public class Main extends Application {
 		startMod = new StartModel();
 		createCards();
 		startMod.setMoney(money);
-		gameController.setModel(startMod);
-		pokerController.setModel(startMod);
-		rootController.setup(gamePanel,blackjackStage,pokerStage, panelController);
-		panelController.setRoot(startMod,rootController,gameController,pokerController);
+		gameController.setModel(startMod); //Black Jack Controller
+		//pokerController.setModel(startMod); //Poker Controller
+		//null pointer for pokerStage. Ignore for now
+		rootController.setup(blackjackStage,pokerStage,solitairStage,root,gamePanel,panelController); //Main Controller
+		panelController.setRoot(startMod,rootController,gameController,pokerController); //Game Panel Controller
 		
 		primaryStage.show();
 	}
@@ -90,7 +96,8 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		blackjackStage = getBlackjack();
-		pokerStage = getPoker();
+		//pokerStage = getPoker();
+		solitairStage = getSolitair();
 		gamePanel = addGamePanel();
 		gamePanel.getChildren().add(blackjackStage);
 		root.getChildren().add(gamePanel);
@@ -114,7 +121,6 @@ public class Main extends Application {
 			}
 			HBox panel = new HBox();
 			panel.getChildren().add(gamePanel);
-			panel.getStyleClass().add("gamePanel");
 			return panel;
 		}
 		catch (IOException e) {
@@ -138,7 +144,24 @@ public class Main extends Application {
 		return null;
 	}
 	
-	private GridPane getPoker() {
+	private GridPane getSolitair() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/SolitairView.fxml"));
+			GridPane solitair = (GridPane) loader.load();
+			solitair.getStyleClass().add("game");
+			solitairController = loader.getController();
+			solitairController.init(startMod);
+			return solitair;
+			
+		} 
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/*private GridPane getPoker() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/PokerView.fxml"));
@@ -151,7 +174,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 	
 	public void createCards() {
 		String[] letters = new String[] {"j","q","k","a"};

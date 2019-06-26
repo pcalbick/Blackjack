@@ -62,6 +62,16 @@ public class StartModel {
 		money.set(set);
 	}
 	
+	public void shuffle(GridPane[] cards) {
+		Random rand = new Random();
+		for(int i=0; i<cards.length; i++) {
+			int numb = rand.nextInt(i+1);
+			GridPane swap = cards[numb];
+			cards[numb] = cards[i];
+			cards[i] = swap;
+		}
+	}
+	
 	class newRandom implements Runnable{
 		public void run() {
 			Random rand = new Random();
